@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: #080810;
+  color: #fff;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0d0d18; }
+::-webkit-scrollbar-thumb { background: rgba(131,58,180,0.4); border-radius: 3px; }
+
+/* ── Gradient helpers ── */
+.g-text {
+  background: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.g-bg { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.g-border {
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image:
+    linear-gradient(#0d0d1a, #0d0d1a),
+    linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+}
+
+/* ── Glass card ── */
+.glass {
+  background: rgba(255,255,255,0.035);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+}
+
+/* ── Input glow ── */
+.input-glow {
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  transition: border-color .3s, box-shadow .3s;
+}
+.input-glow:focus-within {
+  border-color: rgba(168,85,247,0.55);
+  box-shadow: 0 0 0 4px rgba(168,85,247,0.1), 0 0 30px rgba(168,85,247,0.15);
+}
+
+/* ── Shimmer on hover ── */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -80%;
+  width: 50%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.18), transparent);
+  transform: skewX(-20deg);
+  transition: left .55s ease;
+}
+.shimmer:hover::after { left: 160%; }
+
+/* ── Skeleton pulse ── */
+.skel {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: skel 1.6s infinite;
+}
+@keyframes skel {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Shake ── */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  15%,45%,75% { transform: translateX(-7px); }
+  30%,60%,90% { transform: translateX(7px); }
+}
+.shake { animation: shake .45s ease; }
+
+/* ── Floating orbs ── */
+@keyframes orb1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(25px,-18px) scale(1.06); } }
+@keyframes orb2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-20px,14px) scale(0.94); } }
+.orb1 { animation: orb1 9s ease-in-out infinite; }
+.orb2 { animation: orb2 11s ease-in-out infinite 1.5s; }
+.orb3 { animation: orb1 13s ease-in-out infinite 3s reverse; }
+
+/* ── FAQ accordion ── */
+.faq-answer { overflow: hidden; }
+
+/* ── Hashtag chip ── */
+.hchip { transition: transform .18s, box-shadow .18s; }
+.hchip:hover { transform: translateY(-2px) scale(1.06); box-shadow: 0 4px 16px rgba(168,85,247,0.28); }
+
+/* ── Media hover ── */
+.media-dl-btn { transition: opacity .2s; }
+
+video { display: block; max-width: 100%; }
